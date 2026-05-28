@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import SEO from '../components/SEO';
 import FaqList from '../components/FaqList';
 import CtaBanner from '../components/CtaBanner';
+import SquareFootageCalculator from '../components/SquareFootageCalculator';
 import { SITE, CITIES } from '../data/site';
 import { HOME_FAQS } from '../data/faqs';
 
@@ -213,6 +214,8 @@ export default function Home() {
             <FaqList items={HOME_FAQS} />
           </div>
         </section>
+
+        <SquareFootageCalculator />
 
         <CtaBanner
           title="Ready to Make Your Home More Comfortable?"

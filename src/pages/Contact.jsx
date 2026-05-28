@@ -1,4 +1,5 @@
-import { Link } from 'react-router-dom';
+import { useEffect } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import SEO from '../components/SEO';
 import Breadcrumb from '../components/Breadcrumb';
 import PageHero from '../components/PageHero';
@@ -6,6 +7,15 @@ import QuoteForm from '../components/QuoteForm';
 import { SITE, CITIES } from '../data/site';
 
 export default function Contact() {
+  const { hash } = useLocation();
+
+  useEffect(() => {
+    if (hash === '#quote-form') {
+      const form = document.getElementById('quote-form');
+      form?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  }, [hash]);
+
   return (
     <>
       <SEO

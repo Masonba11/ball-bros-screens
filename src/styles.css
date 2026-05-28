@@ -566,6 +566,96 @@ p  { margin-bottom: 1rem; }
 }
 .faq-answer.open { display: block; }
 
+/* ── Square Footage Calculator ── */
+.calculator-intro {
+  max-width: 720px;
+}
+.calculator-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 36px;
+  box-shadow: var(--shadow-lg);
+  max-width: 960px;
+  margin: 0 auto;
+}
+.calculator-grid {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 40px;
+  align-items: start;
+}
+.calculator-rate {
+  display: inline-block;
+  background: var(--tan);
+  border: 1.5px solid var(--border);
+  border-left: 4px solid var(--copper);
+  border-radius: var(--radius);
+  padding: 12px 16px;
+  font-size: .95rem;
+  font-weight: 600;
+  color: var(--charcoal);
+  margin-bottom: 24px;
+}
+.calculator-form-grid {
+  margin-bottom: 0;
+}
+.calculator-results {
+  background: var(--tan);
+  border-radius: 12px;
+  padding: 28px;
+  border-left: 4px solid var(--copper);
+}
+.calculator-results h3 {
+  font-size: 1.15rem;
+  margin-bottom: 20px;
+}
+.calculator-results-list {
+  margin: 0 0 24px;
+}
+.calculator-result-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 16px;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--border);
+}
+.calculator-result-row:last-child {
+  border-bottom: none;
+}
+.calculator-result-row dt {
+  font-size: .9rem;
+  color: var(--gray);
+  font-weight: 500;
+}
+.calculator-result-row dd {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--charcoal);
+  margin: 0;
+}
+.calculator-result-highlight dd {
+  font-size: 1.35rem;
+  color: var(--copper);
+}
+.calculator-quote-btn {
+  width: 100%;
+  display: block;
+}
+.calculator-disclaimer {
+  margin: 28px 0 0;
+  padding-top: 20px;
+  border-top: 1px solid var(--border);
+  font-size: .85rem;
+  color: var(--gray-lt);
+  text-align: center;
+  line-height: 1.6;
+}
+#quote-form {
+  scroll-margin-top: 140px;
+}
+
 /* ── CTA Banner ── */
 .cta-banner {
   background: linear-gradient(135deg, var(--charcoal) 0%, var(--charcoal-md) 100%);
@@ -857,6 +947,7 @@ footer a:hover { color: var(--copper); }
   .city-intro        { grid-template-columns: 1fr; }
   .about-grid        { grid-template-columns: 1fr; }
   .contact-grid      { grid-template-columns: 1fr; }
+  .calculator-grid   { grid-template-columns: 1fr; }
   .footer-grid       { grid-template-columns: 1fr 1fr; }
   .process-steps     { grid-template-columns: 1fr 1fr; }
   .process-steps::before { display: none; }
@@ -876,6 +967,8 @@ footer a:hover { color: var(--copper); }
   .mobile-sticky { display: flex; }
   body { padding-bottom: 72px; }
   .quote-form { padding: 24px 18px; }
+  .calculator-card { padding: 24px 18px; }
+  .calculator-result-row { flex-direction: column; gap: 4px; }
 }
 
 @media (max-width: 480px) {

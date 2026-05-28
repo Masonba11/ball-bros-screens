@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 
 const SELECTORS =
-  '.benefit-card, .step, .area-card, .why-item, .faq-item, .area-detail-card, .stat-item, .service-sidebar, .city-quick-cta, .contact-detail, .section-header';
+  '.benefit-card, .step, .area-card, .why-item, .faq-item, .area-detail-card, .stat-item, .service-sidebar, .city-quick-cta, .contact-detail, .section-header, .calculator-card';
 
 export default function RevealOnScroll({ children }) {
   const { pathname } = useLocation();
