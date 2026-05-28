@@ -570,6 +570,12 @@ p  { margin-bottom: 1rem; }
 .calculator-intro {
   max-width: 720px;
 }
+.calculator-intro-standalone {
+  text-align: center;
+  color: var(--gray);
+  font-size: 1.05rem;
+  margin: 0 auto 28px;
+}
 .calculator-card {
   background: var(--white);
   border: 1px solid var(--border);

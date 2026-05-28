@@ -4,7 +4,6 @@ import Breadcrumb from '../components/Breadcrumb';
 import PageHero from '../components/PageHero';
 import FaqList from '../components/FaqList';
 import CtaBanner from '../components/CtaBanner';
-import SquareFootageCalculator from '../components/SquareFootageCalculator';
 import { SITE, CITIES } from '../data/site';
 import { INSTALLATION_FAQS } from '../data/faqs';
 
@@ -186,8 +185,6 @@ export default function Installation() {
             <FaqList items={INSTALLATION_FAQS} />
           </div>
         </section>
-
-        <SquareFootageCalculator />
 
         <CtaBanner
           title="Get a Free Solar Screen Quote Today"

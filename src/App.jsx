@@ -5,6 +5,7 @@ import About from './pages/About';
 import Contact from './pages/Contact';
 import ServiceAreas from './pages/ServiceAreas';
 import Installation from './pages/Installation';
+import Calculator from './pages/Calculator';
 import CityPage from './pages/CityPage';
 import NotFound from './pages/NotFound';
 import { CITIES } from './data/site';
@@ -18,6 +19,7 @@ export default function App() {
         <Route path="contact" element={<Contact />} />
         <Route path="service-areas" element={<ServiceAreas />} />
         <Route path="solar-screen-installation" element={<Installation />} />
+        <Route path="calculator" element={<Calculator />} />
         {CITIES.map((city) => (
           <Route
             key={city.path}

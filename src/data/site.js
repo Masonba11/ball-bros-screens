@@ -9,6 +9,7 @@ export const SITE = {
 export const NAV_LINKS = [
   { label: 'Home', path: '/' },
   { label: 'Solar Screen Installation', path: '/solar-screen-installation' },
+  { label: 'Price Calculator', path: '/calculator' },
   { label: 'Service Areas', path: '/service-areas' },
   { label: 'About', path: '/about' },
   { label: 'Contact', path: '/contact' },

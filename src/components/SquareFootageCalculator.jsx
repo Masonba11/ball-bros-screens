@@ -37,7 +37,7 @@ function rowSqFt(width, height, quantity) {
   return (w * h * q) / 144;
 }
 
-export default function SquareFootageCalculator() {
+export default function SquareFootageCalculator({ standalone = false }) {
   const baseId = useId();
   const [windows, setWindows] = useState([createWindowRow()]);
 
@@ -96,21 +96,33 @@ export default function SquareFootageCalculator() {
   return (
     <section
       id="solar-screen-calculator"
-      className="section bg-white"
-      aria-labelledby="calculator-heading"
+      className={`section ${standalone ? 'bg-tan' : 'bg-white'}`}
+      aria-labelledby={standalone ? undefined : 'calculator-heading'}
+      aria-label={standalone ? 'Solar screen square footage calculator' : undefined}
     >
       <div className="container">
-        <div className="section-header text-center">
-          <div className="section-tag">Estimate Your Project</div>
-          <h2 id="calculator-heading">Solar Screen Square Footage Calculator</h2>
-          <p className="calculator-intro">
+        {!standalone && (
+          <div className="section-header text-center">
+            <div className="section-tag">Estimate Your Project</div>
+            <h2 id="calculator-heading">Solar Screen Square Footage Calculator</h2>
+            <p className="calculator-intro">
+              Add each window size in your home — most homes have a mix of widths and heights.
+              Enter width, height, and how many windows match that size, then add another row for
+              the next size. We&apos;ll total your square footage and rough project price at{' '}
+              {PRICE_LABEL.toLowerCase()}. Final pricing may vary based on exact measurements,
+              mesh type, frame color, second-story access, and oversized windows.
+            </p>
+          </div>
+        )}
+
+        {standalone && (
+          <p className="calculator-intro calculator-intro-standalone">
             Add each window size in your home — most homes have a mix of widths and heights.
             Enter width, height, and how many windows match that size, then add another row for
             the next size. We&apos;ll total your square footage and rough project price at{' '}
-            {PRICE_LABEL.toLowerCase()}. Final pricing may vary based on exact measurements,
-            mesh type, frame color, second-story access, and oversized windows.
+            {PRICE_LABEL.toLowerCase()}.
           </p>
-        </div>
+        )}
 
         <div className="calculator-card">
           <div className="calculator-grid">
