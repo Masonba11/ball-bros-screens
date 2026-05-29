@@ -4,6 +4,8 @@ export const SITE = {
   phone: '+1-480-555-0100',
   phoneDisplay: '(480) 555-0100',
   email: 'info@ballbrosscreens.com',
+  facebook: 'https://www.facebook.com/ballbrosscreens',
+  instagram: 'https://www.instagram.com/ballbrosscreens',
 };
 
 export const NAV_LINKS = [

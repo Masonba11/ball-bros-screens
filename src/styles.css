@@ -838,6 +838,42 @@ footer a:hover { color: var(--copper); }
 }
 .mobile-sticky .btn { flex: 1; text-align: center; padding: 13px 10px; font-size: .95rem; }
 
+/* ── Floating Social Links ── */
+.social-floating {
+  position: fixed;
+  bottom: 24px;
+  left: 20px;
+  z-index: 850;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.social-floating-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--copper);
+  color: var(--white);
+  box-shadow: 0 4px 14px rgba(200, 96, 26, 0.35);
+  transition: background .2s, transform .15s, box-shadow .2s;
+}
+.social-floating-link svg {
+  width: 20px;
+  height: 20px;
+}
+.social-floating-link:hover {
+  background: var(--copper-dk);
+  color: var(--white);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(200, 96, 26, 0.45);
+}
+.social-floating-link:active {
+  transform: scale(0.96);
+}
+
 /* ── Service Page ── */
 .service-intro {
   display: grid;
@@ -1033,6 +1069,7 @@ footer a:hover { color: var(--copper); }
   .hero { padding: 60px 0 52px; }
   .hero-trust { display: none; }
   .mobile-sticky { display: flex; }
+  .social-floating { bottom: 88px; left: 16px; }
   body { padding-bottom: 72px; }
   .quote-form { padding: 24px 18px; }
   .calculator-card { padding: 24px 18px; }
