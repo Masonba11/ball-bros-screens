@@ -854,10 +854,10 @@ footer a:hover { color: var(--copper); }
   justify-content: center;
   width: 44px;
   height: 44px;
-  border-radius: 50%;
+  border-radius: var(--radius);
   background: var(--copper);
   color: var(--white);
-  box-shadow: 0 4px 14px rgba(200, 96, 26, 0.35);
+  box-shadow: 0 4px 0 var(--copper-dk), 0 4px 14px rgba(200, 96, 26, 0.35);
   transition: background .2s, transform .15s, box-shadow .2s;
 }
 .social-floating-link svg {
@@ -868,10 +868,11 @@ footer a:hover { color: var(--copper); }
   background: var(--copper-dk);
   color: var(--white);
   transform: translateY(-2px);
-  box-shadow: 0 6px 18px rgba(200, 96, 26, 0.45);
+  box-shadow: 0 6px 0 var(--copper-dk), 0 6px 18px rgba(200, 96, 26, 0.45);
 }
 .social-floating-link:active {
-  transform: scale(0.96);
+  transform: translateY(2px);
+  box-shadow: 0 2px 0 var(--copper-dk), 0 2px 8px rgba(200, 96, 26, 0.3);
 }
 
 /* ── Service Page ── */
