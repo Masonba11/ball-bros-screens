@@ -243,7 +243,7 @@ export default function SquareFootageCalculator({ standalone = false }) {
               )}
 
               <Link to="/contact#quote-form" className="btn btn-primary btn-lg calculator-quote-btn">
-                Get Free Quote
+                Get a Free Quote
               </Link>
             </div>
           </div>

@@ -4,39 +4,8 @@ import Breadcrumb from '../components/Breadcrumb';
 import PageHero from '../components/PageHero';
 import CtaBanner from '../components/CtaBanner';
 import { SITE } from '../data/site';
-
-const AREA_CARDS = [
-  {
-    name: 'Queen Creek, AZ',
-    text: 'Queen Creek is one of Arizona\'s fastest-growing communities, with newer homes that often feature large windows and significant south and west-facing sun exposure.',
-    path: '/solar-screens-queen-creek-az',
-    label: 'Solar Screens in Queen Creek',
-  },
-  {
-    name: 'San Tan Valley, AZ',
-    text: "San Tan Valley's desert setting means full, unobstructed sun exposure throughout the day. Solar screens are an affordable and effective way to reduce heat and improve comfort.",
-    path: '/solar-screens-san-tan-valley-az',
-    label: 'Solar Screens in San Tan Valley',
-  },
-  {
-    name: 'Gilbert, AZ',
-    text: "Gilbert's family-friendly neighborhoods often feature homes with large front-facing windows and open floor plans that absorb significant solar heat.",
-    path: '/solar-screens-gilbert-az',
-    label: 'Solar Screens in Gilbert',
-  },
-  {
-    name: 'Chandler, AZ',
-    text: 'Chandler homes — particularly those with east and west-facing windows — experience intense morning and afternoon sun that benefits significantly from exterior solar screens.',
-    path: '/solar-screens-chandler-az',
-    label: 'Solar Screens in Chandler',
-  },
-  {
-    name: 'Mesa, AZ',
-    text: "Mesa's diverse mix of older and newer homes all face the same Arizona sun challenges. Custom solar screens are one of the most practical upgrades you can make.",
-    path: '/solar-screens-mesa-az',
-    label: 'Solar Screens in Mesa',
-  },
-];
+import { SERVICE_AREA_CARDS } from '../data/cities';
+import { combineJsonLd, localBusinessSchema } from '../utils/jsonLd';
 
 const WHY_ITEMS = [
   { title: 'Intense Year-Round Sun', text: 'The East Valley receives over 300 days of sunshine per year. Solar screens work hard in every season — not just summer.' },
@@ -52,17 +21,19 @@ export default function ServiceAreas() {
         title="Solar Screen Service Areas – East Valley AZ | Ball Bros Screens"
         description="Ball Bros Screens installs custom solar screens in Queen Creek, San Tan Valley, Gilbert, Chandler, Mesa, and surrounding East Valley communities."
         path="/service-areas"
-        jsonLd={{
-          '@context': 'https://schema.org',
-          '@type': 'BreadcrumbList',
-          itemListElement: [
-            { '@type': 'ListItem', position: 1, name: 'Home', item: `${SITE.domain}/` },
-            { '@type': 'ListItem', position: 2, name: 'Service Areas', item: `${SITE.domain}/service-areas` },
-          ],
-        }}
+        jsonLd={combineJsonLd(
+          localBusinessSchema(),
+          {
+            '@type': 'BreadcrumbList',
+            itemListElement: [
+              { '@type': 'ListItem', position: 1, name: 'Home', item: `${SITE.domain}/` },
+              { '@type': 'ListItem', position: 2, name: 'Service Areas', item: `${SITE.domain}/service-areas` },
+            ],
+          }
+        )}
       />
 
-      <main>
+      <main id="main-content">
         <PageHero
           title="Solar Screen Installation Throughout the East Valley"
           subtitle="Ball Bros Screens serves homeowners in Queen Creek, San Tan Valley, Gilbert, Chandler, Mesa, and the surrounding East Valley communities."
@@ -93,7 +64,7 @@ export default function ServiceAreas() {
               <p>Click your city for local solar screen information and to request a free quote.</p>
             </div>
             <div className="areas-grid-2">
-              {AREA_CARDS.map((area) => (
+              {SERVICE_AREA_CARDS.map((area) => (
                 <div key={area.path} className="area-detail-card">
                   <h3>{area.name}</h3>
                   <p>{area.text}</p>
@@ -118,9 +89,9 @@ export default function ServiceAreas() {
             <div className="why-list">
               {WHY_ITEMS.map((item) => (
                 <div key={item.title} className="why-item">
-                  <div className="check">✓</div>
+                  <div className="check" aria-hidden="true">✓</div>
                   <div>
-                    <h4>{item.title}</h4>
+                    <h3>{item.title}</h3>
                     <p>{item.text}</p>
                   </div>
                 </div>
@@ -132,7 +103,7 @@ export default function ServiceAreas() {
         <CtaBanner
           title="Get a Free Quote for Your East Valley Home"
           text="We'll come to you, measure your windows, and give you a clear quote. No pressure, no obligation."
-          primaryLabel="Request a Free Quote"
+          primaryLabel="Get a Free Quote"
         />
       </main>
     </>

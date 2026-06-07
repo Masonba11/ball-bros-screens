@@ -5,6 +5,7 @@ import Breadcrumb from '../components/Breadcrumb';
 import PageHero from '../components/PageHero';
 import QuoteForm from '../components/QuoteForm';
 import { SITE, CITIES } from '../data/site';
+import { combineJsonLd, localBusinessSchema } from '../utils/jsonLd';
 
 export default function Contact() {
   const { hash } = useLocation();
@@ -12,7 +13,8 @@ export default function Contact() {
   useEffect(() => {
     if (hash === '#quote-form') {
       const form = document.getElementById('quote-form');
-      form?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      form?.scrollIntoView({ behavior: prefersReducedMotion ? 'auto' : 'smooth', block: 'start' });
     }
   }, [hash]);
 
@@ -22,17 +24,19 @@ export default function Contact() {
         title="Free Solar Screen Quote | Contact Ball Bros Screens – East Valley AZ"
         description="Request a free solar screen installation quote from Ball Bros Screens. Serving Queen Creek, San Tan Valley, Gilbert, Chandler, Mesa, and the East Valley."
         path="/contact"
-        jsonLd={{
-          '@context': 'https://schema.org',
-          '@type': 'BreadcrumbList',
-          itemListElement: [
-            { '@type': 'ListItem', position: 1, name: 'Home', item: `${SITE.domain}/` },
-            { '@type': 'ListItem', position: 2, name: 'Contact', item: `${SITE.domain}/contact` },
-          ],
-        }}
+        jsonLd={combineJsonLd(
+          localBusinessSchema(),
+          {
+            '@type': 'BreadcrumbList',
+            itemListElement: [
+              { '@type': 'ListItem', position: 1, name: 'Home', item: `${SITE.domain}/` },
+              { '@type': 'ListItem', position: 2, name: 'Contact', item: `${SITE.domain}/contact` },
+            ],
+          }
+        )}
       />
 
-      <main>
+      <main id="main-content">
         <PageHero
           title="Request a Free Solar Screen Quote"
           subtitle="Fill out the form below and we'll be in touch to schedule your free in-home measurement and quote. No pressure, no obligation."

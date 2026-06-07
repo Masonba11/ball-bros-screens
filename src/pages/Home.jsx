@@ -2,18 +2,21 @@ import { Link } from 'react-router-dom';
 import SEO from '../components/SEO';
 import FaqList from '../components/FaqList';
 import CtaBanner from '../components/CtaBanner';
+import BenefitIcon from '../components/BenefitIcon';
 import { SITE, CITIES } from '../data/site';
 import { HOME_FAQS } from '../data/faqs';
+import { INSTALLATION_PROCESS_STEPS } from '../data/process';
+import { combineJsonLd, faqPageSchema, howToSchema, localBusinessSchema } from '../utils/jsonLd';
 
 const BENEFITS = [
-  { title: 'Reduce Heat Entering Your Home', text: 'Solar screens block a significant portion of solar heat before it passes through your glass, helping to keep rooms cooler.' },
-  { title: 'Block Harsh Arizona Sun', text: "Arizona's intense UV exposure can be relentless. Solar screens are designed to absorb and reflect sunlight before it hits your windows." },
-  { title: 'Reduce Glare', text: 'Glare on TVs, monitors, and furniture is a daily frustration in the Valley. Solar screens dramatically cut glare without darkening your rooms.' },
-  { title: 'Increase Daytime Privacy', text: 'See out clearly while making it difficult for neighbors or passersby to see into your home during the day.' },
-  { title: 'Protect Flooring & Furniture', text: 'UV rays fade carpets, hardwood floors, furniture, and artwork over time. Solar screens help shield your interiors from sun damage.' },
-  { title: 'Help Your AC Work Less Hard', text: 'By reducing solar heat gain through windows, solar screens can help reduce the load on your air conditioning system.' },
-  { title: 'Improve Curb Appeal', text: "Modern solar screens have a clean, professional look that complements your home's exterior and gives it a finished appearance." },
-  { title: 'Custom Fit for Every Window', text: 'Every screen is measured and built specifically for your windows — no gaps, no sag, no one-size-fits-all shortcuts.' },
+  { icon: 'heat', title: 'Reduce Heat Entering Your Home', text: 'Solar screens block a significant portion of solar heat before it passes through your glass, helping to keep rooms cooler.' },
+  { icon: 'sun', title: 'Block Harsh Arizona Sun', text: "Arizona's intense UV exposure can be relentless. Solar screens are designed to absorb and reflect sunlight before it hits your windows." },
+  { icon: 'glare', title: 'Reduce Glare', text: 'Glare on TVs, monitors, and furniture is a daily frustration in the Valley. Solar screens dramatically cut glare without darkening your rooms.' },
+  { icon: 'privacy', title: 'Increase Daytime Privacy', text: 'See out clearly while making it difficult for neighbors or passersby to see into your home during the day.' },
+  { icon: 'furniture', title: 'Protect Flooring & Furniture', text: 'UV rays fade carpets, hardwood floors, furniture, and artwork over time. Solar screens help shield your interiors from sun damage.' },
+  { icon: 'ac', title: 'Help Your AC Work Less Hard', text: 'By reducing solar heat gain through windows, solar screens can help reduce the load on your air conditioning system.' },
+  { icon: 'house', title: 'Improve Curb Appeal', text: "Modern solar screens have a clean, professional look that complements your home's exterior and gives it a finished appearance." },
+  { icon: 'measure', title: 'Custom Fit for Every Window', text: 'Every screen is measured and built specifically for your windows — no gaps, no sag, no one-size-fits-all shortcuts.' },
 ];
 
 const WHY_ITEMS = [
@@ -27,26 +30,6 @@ const WHY_ITEMS = [
   { title: 'Designed for Curb Appeal', text: "Our screens look great on the outside too. We help you choose colors and styles that complement your home's appearance." },
 ];
 
-const STEPS = [
-  { num: 1, title: 'Request a Free Quote', text: 'Fill out our quick quote form or give us a call. No pressure, no obligation.' },
-  { num: 2, title: 'We Measure Your Windows', text: 'We come to you and take precise measurements to ensure a perfect custom fit.' },
-  { num: 3, title: 'Choose Your Screen Options', text: 'We help you choose the right screen density and color for your home and goals.' },
-  { num: 4, title: 'Professional Installation', text: 'We install your custom screens cleanly and efficiently — with minimal disruption to your day.' },
-  { num: 5, title: 'Enjoy a Cooler Home', text: 'Start experiencing the difference right away — less heat, less glare, more comfort.' },
-];
-
-const businessJsonLd = {
-  '@context': 'https://schema.org',
-  '@type': 'HomeAndConstructionBusiness',
-  '@id': `${SITE.domain}/#business`,
-  name: SITE.name,
-  url: SITE.domain,
-  telephone: SITE.phone,
-  email: SITE.email,
-  description: 'Custom solar screen installation for homeowners in the East Valley, Arizona.',
-  areaServed: CITIES.map((c) => ({ '@type': 'City', name: c.name, addressRegion: 'AZ' })),
-};
-
 export default function Home() {
   return (
     <>
@@ -54,10 +37,19 @@ export default function Home() {
         title="Ball Bros Screens | Solar Screen Installation in the East Valley, AZ"
         description="Ball Bros Screens installs custom solar screens for homeowners in Queen Creek, San Tan Valley, Gilbert, Chandler, Mesa, and the East Valley. Get a free quote today."
         path="/"
-        jsonLd={businessJsonLd}
+        jsonLd={combineJsonLd(
+          localBusinessSchema(),
+          faqPageSchema(HOME_FAQS),
+          howToSchema({
+            name: 'How to Get Solar Screens Installed',
+            description: 'The Ball Bros Screens process from free quote request through professional installation.',
+            steps: INSTALLATION_PROCESS_STEPS,
+            path: '/',
+          })
+        )}
       />
 
-      <main>
+      <main id="main-content">
         <section className="hero" aria-labelledby="hero-heading">
           <div className="container">
             <div className="hero-inner">
@@ -97,7 +89,9 @@ export default function Home() {
             <div className="benefits-grid">
               {BENEFITS.map((b) => (
                 <div key={b.title} className="benefit-card">
-                  <div className="benefit-icon" aria-hidden="true" />
+                  <div className="benefit-icon" aria-hidden="true">
+                    <BenefitIcon name={b.icon} />
+                  </div>
                   <h3>{b.title}</h3>
                   <p>{b.text}</p>
                 </div>
@@ -149,7 +143,7 @@ export default function Home() {
               <p>From your first call to the finished install, Ball Bros Screens keeps the process clear and stress-free.</p>
             </div>
             <div className="process-steps">
-              {STEPS.map((step) => (
+              {INSTALLATION_PROCESS_STEPS.map((step) => (
                 <div key={step.num} className="step">
                   <div className="step-num" aria-hidden="true">{step.num}</div>
                   <h3>{step.title}</h3>
@@ -194,7 +188,7 @@ export default function Home() {
                 <div key={item.title} className="why-item">
                   <div className="check" aria-hidden="true">✓</div>
                   <div>
-                    <h4>{item.title}</h4>
+                    <h3>{item.title}</h3>
                     <p>{item.text}</p>
                   </div>
                 </div>

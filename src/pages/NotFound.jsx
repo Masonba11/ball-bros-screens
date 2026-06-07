@@ -4,8 +4,12 @@ import SEO from '../components/SEO';
 export default function NotFound() {
   return (
     <>
-      <SEO title="Page Not Found | Ball Bros Screens" description="The page you're looking for doesn't exist." path="/404" />
-      <main>
+      <SEO
+        title="Page Not Found | Ball Bros Screens"
+        description="The page you're looking for doesn't exist."
+        noindex
+      />
+      <main id="main-content">
         <section className="page-hero">
           <div className="container" style={{ textAlign: 'center' }}>
             <h1>Page Not Found</h1>

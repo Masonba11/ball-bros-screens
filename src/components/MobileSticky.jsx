@@ -5,7 +5,7 @@ export default function MobileSticky() {
   return (
     <div className="mobile-sticky" role="complementary" aria-label="Mobile quick actions">
       <a href={`tel:${SITE.phone}`} className="btn btn-outline">Call Now</a>
-      <Link to="/contact" className="btn btn-primary">Get Quote</Link>
+      <Link to="/contact" className="btn btn-primary">Get a Free Quote</Link>
     </div>
   );
 }

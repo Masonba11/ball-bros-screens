@@ -101,6 +101,13 @@ export const CITY_CONTENT = {
   },
 };
 
+export const SERVICE_AREA_CARDS = Object.values(CITY_CONTENT).map((city) => ({
+  name: `${city.name}, AZ`,
+  text: city.introParagraphs[0],
+  path: city.path,
+  label: `Solar Screens in ${city.name}`,
+}));
+
 export const CITY_WHY_ITEMS = (cityName) => [
   {
     title: `Newer Homes with Large Windows`,
@@ -130,18 +137,22 @@ export const CITY_WHY_ITEMS = (cityName) => [
 
 export const CITY_BENEFITS = (cityName) => [
   {
+    icon: 'heat',
     title: 'Reduced Heat in Key Rooms',
     text: `Rooms that face south or west in ${cityName} often feel significantly cooler after solar screens are installed — without closing blinds or running the AC harder.`,
   },
   {
+    icon: 'glare',
     title: 'Less Glare on Screens and Surfaces',
     text: 'TVs, monitors, and table surfaces that catch afternoon light are much easier to use with solar screens filtering the sun before it hits the glass.',
   },
   {
+    icon: 'privacy',
     title: 'Daytime Privacy',
     text: `You can see out clearly, but it's difficult for people outside to see in — a real benefit in ${cityName}'s growing neighborhoods.`,
   },
   {
+    icon: 'shield',
     title: 'Interior Protection from UV',
     text: 'Solar screens block a significant portion of UV rays, reducing fading and damage to your floors, furniture, rugs, and window treatments.',
   },

@@ -24,13 +24,13 @@ function InstagramIcon() {
 
 export default function SocialFloating() {
   return (
-    <div className="social-floating" role="complementary" aria-label="Follow Ball Bros Screens">
+    <div className="social-floating" role="complementary" aria-label={`Follow ${SITE.name}`}>
       <a
         href={SITE.facebook}
         className="social-floating-link"
         target="_blank"
         rel="noopener noreferrer"
-        aria-label="Ball Bros Screens on Facebook"
+        aria-label={`${SITE.name} on Facebook`}
       >
         <FacebookIcon />
       </a>
@@ -39,7 +39,7 @@ export default function SocialFloating() {
         className="social-floating-link"
         target="_blank"
         rel="noopener noreferrer"
-        aria-label="Ball Bros Screens on Instagram"
+        aria-label={`${SITE.name} on Instagram`}
       >
         <InstagramIcon />
       </a>

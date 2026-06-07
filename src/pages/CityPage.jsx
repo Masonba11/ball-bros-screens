@@ -1,9 +1,11 @@
-import { Link, Navigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import SEO from '../components/SEO';
 import Breadcrumb from '../components/Breadcrumb';
 import PageHero from '../components/PageHero';
 import FaqList from '../components/FaqList';
 import CtaBanner from '../components/CtaBanner';
+import BenefitIcon from '../components/BenefitIcon';
+import NotFound from './NotFound';
 import { SITE } from '../data/site';
 import {
   CITY_CONTENT,
@@ -11,10 +13,11 @@ import {
   CITY_BENEFITS,
   CITY_FAQS,
 } from '../data/cities';
+import { combineJsonLd, faqPageSchema, localBusinessSchema } from '../utils/jsonLd';
 
 export default function CityPage({ slug }) {
   const city = CITY_CONTENT[slug];
-  if (!city) return <Navigate to="/" replace />;
+  if (!city) return <NotFound />;
 
   const whyItems = CITY_WHY_ITEMS(city.name);
   const benefits = CITY_BENEFITS(city.name);
@@ -26,18 +29,21 @@ export default function CityPage({ slug }) {
         title={`${city.title} | Ball Bros Screens – Free Quote`}
         description={city.description}
         path={city.path}
-        jsonLd={{
-          '@context': 'https://schema.org',
-          '@type': 'BreadcrumbList',
-          itemListElement: [
-            { '@type': 'ListItem', position: 1, name: 'Home', item: `${SITE.domain}/` },
-            { '@type': 'ListItem', position: 2, name: 'Service Areas', item: `${SITE.domain}/service-areas` },
-            { '@type': 'ListItem', position: 3, name: city.name, item: `${SITE.domain}${city.path}` },
-          ],
-        }}
+        jsonLd={combineJsonLd(
+          localBusinessSchema(),
+          {
+            '@type': 'BreadcrumbList',
+            itemListElement: [
+              { '@type': 'ListItem', position: 1, name: 'Home', item: `${SITE.domain}/` },
+              { '@type': 'ListItem', position: 2, name: 'Service Areas', item: `${SITE.domain}/service-areas` },
+              { '@type': 'ListItem', position: 3, name: city.name, item: `${SITE.domain}${city.path}` },
+            ],
+          },
+          faqPageSchema(faqs)
+        )}
       />
 
-      <main>
+      <main id="main-content">
         <PageHero title={city.title} subtitle={city.heroSub}>
           <Breadcrumb
             items={[
@@ -83,9 +89,9 @@ export default function CityPage({ slug }) {
             <div className="why-list">
               {whyItems.map((item) => (
                 <div key={item.title} className="why-item">
-                  <div className="check">✓</div>
+                  <div className="check" aria-hidden="true">✓</div>
                   <div>
-                    <h4>{item.title}</h4>
+                    <h3>{item.title}</h3>
                     <p>{item.text}</p>
                   </div>
                 </div>
@@ -103,7 +109,9 @@ export default function CityPage({ slug }) {
             <div className="benefits-grid">
               {benefits.map((b) => (
                 <div key={b.title} className="benefit-card">
-                  <div className="benefit-icon" aria-hidden="true" />
+                  <div className="benefit-icon" aria-hidden="true">
+                    <BenefitIcon name={b.icon} />
+                  </div>
                   <h3>{b.title}</h3>
                   <p>{b.text}</p>
                 </div>
@@ -125,7 +133,7 @@ export default function CityPage({ slug }) {
         <CtaBanner
           title={`Ready for Solar Screens in ${city.name}?`}
           text={`Ball Bros Screens offers free, no-obligation quotes for ${city.name} homeowners. Let us come measure your windows and show you what's possible.`}
-          primaryLabel="Request a Free Quote"
+          primaryLabel="Get a Free Quote"
         />
       </main>
     </>

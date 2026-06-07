@@ -4,13 +4,15 @@ import { SITE } from '../data/site';
 export default function CtaBanner({
   title = 'Ready for Cooler, More Comfortable Windows?',
   text = 'Get a free quote for custom solar screen installation. We respond within one business day.',
-  primaryLabel = 'Get Your Free Quote',
+  primaryLabel = 'Get a Free Quote',
   primaryTo = '/contact',
 }) {
+  const headingId = 'cta-banner-heading';
+
   return (
-    <section className="cta-banner">
+    <section className="cta-banner" aria-labelledby={headingId}>
       <div className="container">
-        <h2>{title}</h2>
+        <h2 id={headingId}>{title}</h2>
         <p>{text}</p>
         <div className="cta-group" style={{ justifyContent: 'center' }}>
           <Link to={primaryTo} className="btn btn-primary btn-lg">

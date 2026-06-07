@@ -4,6 +4,7 @@ import Breadcrumb from '../components/Breadcrumb';
 import PageHero from '../components/PageHero';
 import CtaBanner from '../components/CtaBanner';
 import { SITE, CITIES } from '../data/site';
+import { combineJsonLd, localBusinessSchema } from '../utils/jsonLd';
 
 const VALUES = [
   { title: 'Custom Measurements on Every Job', text: 'We never guess or use generic sizing. We measure every window individually to make sure each screen fits perfectly and performs as it should.' },
@@ -21,17 +22,19 @@ export default function About() {
         title="About Ball Bros Screens | East Valley Solar Screen Installer"
         description="Ball Bros Screens is a local East Valley Arizona company focused entirely on custom solar screen installation. Learn about our approach and service commitment."
         path="/about"
-        jsonLd={{
-          '@context': 'https://schema.org',
-          '@type': 'BreadcrumbList',
-          itemListElement: [
-            { '@type': 'ListItem', position: 1, name: 'Home', item: `${SITE.domain}/` },
-            { '@type': 'ListItem', position: 2, name: 'About', item: `${SITE.domain}/about` },
-          ],
-        }}
+        jsonLd={combineJsonLd(
+          localBusinessSchema(),
+          {
+            '@type': 'BreadcrumbList',
+            itemListElement: [
+              { '@type': 'ListItem', position: 1, name: 'Home', item: `${SITE.domain}/` },
+              { '@type': 'ListItem', position: 2, name: 'About', item: `${SITE.domain}/about` },
+            ],
+          }
+        )}
       />
 
-      <main>
+      <main id="main-content">
         <PageHero
           title="About Ball Bros Screens"
           subtitle="A local East Valley company focused on one thing: professional solar screen installation for Arizona homeowners."
@@ -89,9 +92,9 @@ export default function About() {
             <div className="why-list">
               {VALUES.map((item) => (
                 <div key={item.title} className="why-item">
-                  <div className="check">✓</div>
+                  <div className="check" aria-hidden="true">✓</div>
                   <div>
-                    <h4>{item.title}</h4>
+                    <h3>{item.title}</h3>
                     <p>{item.text}</p>
                   </div>
                 </div>
@@ -119,7 +122,7 @@ export default function About() {
           </div>
         </section>
 
-        <CtaBanner title="Ready to Get Started?" text="Contact Ball Bros Screens for a free, no-obligation solar screen quote. We serve the entire East Valley." primaryLabel="Request a Free Quote" />
+        <CtaBanner title="Ready to Get Started?" text="Contact Ball Bros Screens for a free, no-obligation solar screen quote. We serve the entire East Valley." />
       </main>
     </>
   );

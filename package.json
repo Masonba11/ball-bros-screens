@@ -6,16 +6,22 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "generate:seo": "node scripts/generate-sitemap.js",
+    "generate:logo-footer": "node scripts/generate-footer-logo.js",
+    "generate:og-image": "node scripts/generate-og-image.js"
   },
   "dependencies": {
+    "@fontsource/plus-jakarta-sans": "^5.2.8",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-helmet-async": "^2.0.5",
     "react-router-dom": "^7.6.2"
   },
   "devDependencies": {
+    "@vercel/functions": "^3.6.2",
     "@vitejs/plugin-react": "^4.5.2",
+    "sharp": "^0.34.5",
     "vite": "^6.3.5"
   }
 }

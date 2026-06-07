@@ -4,24 +4,19 @@ import Breadcrumb from '../components/Breadcrumb';
 import PageHero from '../components/PageHero';
 import FaqList from '../components/FaqList';
 import CtaBanner from '../components/CtaBanner';
+import BenefitIcon from '../components/BenefitIcon';
 import { SITE, CITIES } from '../data/site';
 import { INSTALLATION_FAQS } from '../data/faqs';
+import { INSTALLATION_PROCESS_STEPS } from '../data/process';
+import { combineJsonLd, faqPageSchema, businessProviderRef, howToSchema, localBusinessSchema } from '../utils/jsonLd';
 
 const BENEFITS = [
-  { title: 'Reduce Heat Gain', text: 'Solar screens block a significant portion of solar heat before it reaches your glass, helping to reduce the temperature of sun-exposed rooms.' },
-  { title: 'UV Protection', text: 'High-quality solar screen material filters out harmful UV rays that cause fading in flooring, furniture, artwork, and other interior surfaces.' },
-  { title: 'Glare Reduction', text: 'Harsh glare on TVs, computer screens, and throughout rooms is dramatically reduced — without requiring curtains or blackout shades.' },
-  { title: 'Daytime Privacy', text: 'From outside your home, solar screens make it difficult to see in during daylight hours — while you maintain a clear view from inside.' },
-  { title: 'Lighter AC Load', text: 'By reducing solar heat gain through windows, solar screens can help your air conditioning system work less hard.' },
-  { title: 'Enhanced Curb Appeal', text: "Modern solar screens have a clean, uniform appearance that adds a finished, polished look to your home's exterior." },
-];
-
-const STEPS = [
-  { num: 1, title: 'Request a Free Quote', text: "Contact us online or call. We'll set up a time that works for you — no pressure." },
-  { num: 2, title: 'We Measure Your Windows', text: 'We come to your home and take precise measurements to ensure a perfect, custom fit on every screen.' },
-  { num: 3, title: 'Choose Your Screen Options', text: "We walk you through screen density and color options to match your home's look and your comfort priorities." },
-  { num: 4, title: 'We Install Your Screens', text: 'We return to professionally install your custom-built screens, working cleanly and efficiently.' },
-  { num: 5, title: 'Start Enjoying Your Home', text: 'Feel the difference immediately — reduced heat, less glare, more comfort, and a better-looking exterior.' },
+  { icon: 'heat', title: 'Reduce Heat Gain', text: 'Solar screens block a significant portion of solar heat before it reaches your glass, helping to reduce the temperature of sun-exposed rooms.' },
+  { icon: 'shield', title: 'UV Protection', text: 'High-quality solar screen material filters out harmful UV rays that cause fading in flooring, furniture, artwork, and other interior surfaces.' },
+  { icon: 'glare', title: 'Glare Reduction', text: 'Harsh glare on TVs, computer screens, and throughout rooms is dramatically reduced — without requiring curtains or blackout shades.' },
+  { icon: 'privacy', title: 'Daytime Privacy', text: 'From outside your home, solar screens make it difficult to see in during daylight hours — while you maintain a clear view from inside.' },
+  { icon: 'ac', title: 'Lighter AC Load', text: 'By reducing solar heat gain through windows, solar screens can help your air conditioning system work less hard.' },
+  { icon: 'house', title: 'Enhanced Curb Appeal', text: "Modern solar screens have a clean, uniform appearance that adds a finished, polished look to your home's exterior." },
 ];
 
 export default function Installation() {
@@ -31,18 +26,27 @@ export default function Installation() {
         title="Solar Screen Installation in the East Valley, AZ | Ball Bros Screens"
         description="Professional solar screen installation for East Valley Arizona homeowners. Custom-fit screens for every window. Serving Queen Creek, Gilbert, Chandler, Mesa, San Tan Valley."
         path="/solar-screen-installation"
-        jsonLd={{
-          '@context': 'https://schema.org',
-          '@type': 'Service',
-          name: 'Solar Screen Installation',
-          provider: { '@type': 'HomeAndConstructionBusiness', name: SITE.name, url: SITE.domain },
-          areaServed: 'East Valley, Arizona',
-          description: 'Custom exterior solar screen installation for residential windows in the East Valley, AZ.',
-          url: `${SITE.domain}/solar-screen-installation`,
-        }}
+        jsonLd={combineJsonLd(
+          localBusinessSchema(),
+          {
+            '@type': 'Service',
+            name: 'Solar Screen Installation',
+            provider: businessProviderRef(),
+            areaServed: 'East Valley, Arizona',
+            description: 'Custom exterior solar screen installation for residential windows in the East Valley, AZ.',
+            url: `${SITE.domain}/solar-screen-installation`,
+          },
+          faqPageSchema(INSTALLATION_FAQS),
+          howToSchema({
+            name: 'How Solar Screen Installation Works',
+            description: 'Step-by-step process for custom solar screen installation with Ball Bros Screens in the East Valley, AZ.',
+            steps: INSTALLATION_PROCESS_STEPS,
+            path: '/solar-screen-installation',
+          })
+        )}
       />
 
-      <main>
+      <main id="main-content">
         <PageHero
           title="Solar Screen Installation in the East Valley, AZ"
           subtitle="Custom-fit exterior solar screens professionally installed for homeowners throughout Queen Creek, Gilbert, Chandler, Mesa, San Tan Valley, and the surrounding East Valley."
@@ -81,7 +85,7 @@ export default function Installation() {
                   <li>Screens built for Arizona&apos;s climate</li>
                 </ul>
                 <div style={{ marginTop: 24 }}>
-                  <Link to="/contact" className="btn btn-primary" style={{ width: '100%', textAlign: 'center' }}>Request a Free Quote</Link>
+                  <Link to="/contact" className="btn btn-primary" style={{ width: '100%', textAlign: 'center' }}>Get a Free Quote</Link>
                 </div>
               </div>
             </div>
@@ -98,7 +102,9 @@ export default function Installation() {
             <div className="benefits-grid">
               {BENEFITS.map((b) => (
                 <div key={b.title} className="benefit-card">
-                  <div className="benefit-icon" aria-hidden="true" />
+                  <div className="benefit-icon" aria-hidden="true">
+                    <BenefitIcon name={b.icon} />
+                  </div>
                   <h3>{b.title}</h3>
                   <p>{b.text}</p>
                 </div>
@@ -146,7 +152,7 @@ export default function Installation() {
               <p>From your first call to your finished screens, the process is straightforward.</p>
             </div>
             <div className="process-steps">
-              {STEPS.map((step) => (
+              {INSTALLATION_PROCESS_STEPS.map((step) => (
                 <div key={step.num} className="step">
                   <div className="step-num" aria-hidden="true">{step.num}</div>
                   <h3>{step.title}</h3>
@@ -189,7 +195,7 @@ export default function Installation() {
         <CtaBanner
           title="Get a Free Solar Screen Quote Today"
           text="Ball Bros Screens provides free, no-obligation quotes for homeowners across the East Valley."
-          primaryLabel="Request My Free Quote"
+          primaryLabel="Get a Free Quote"
         />
       </main>
     </>

@@ -9,25 +9,39 @@ export default function FaqList({ items }) {
 
   return (
     <div className="faq-list">
-      {items.map((item, index) => (
-        <div
-          key={item.question}
-          className={`faq-item${openIndex === index ? ' open' : ''}`}
-        >
-          <button
-            type="button"
-            className="faq-question"
-            aria-expanded={openIndex === index}
-            onClick={() => toggle(index)}
+      {items.map((item, index) => {
+        const isOpen = openIndex === index;
+        const questionId = `faq-question-${index}`;
+        const answerId = `faq-answer-${index}`;
+
+        return (
+          <div
+            key={item.question}
+            className={`faq-item${isOpen ? ' open' : ''}`}
           >
-            {item.question}
-            <span className="toggle" aria-hidden="true">+</span>
-          </button>
-          <div className="faq-answer">
-            <p>{item.answer}</p>
+            <button
+              type="button"
+              id={questionId}
+              className="faq-question"
+              aria-expanded={isOpen}
+              aria-controls={answerId}
+              onClick={() => toggle(index)}
+            >
+              {item.question}
+              <span className="toggle" aria-hidden="true">+</span>
+            </button>
+            <div
+              id={answerId}
+              className="faq-answer"
+              role="region"
+              aria-labelledby={questionId}
+              hidden={!isOpen}
+            >
+              <p>{item.answer}</p>
+            </div>
           </div>
-        </div>
-      ))}
+        );
+      })}
     </div>
   );
 }

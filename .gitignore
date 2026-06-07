@@ -4,3 +4,11 @@ node_modules/
 dist/
 .DS_Store
 .vercel
+.env
+.env.local
+.env.*.local
+public/sitemap.xml
+public/robots.txt
+public/site.webmanifest
+public/llms.txt
+*.report.html

@@ -8,6 +8,9 @@ import RevealOnScroll from './RevealOnScroll';
 export default function Layout() {
   return (
     <>
+      <a href="#main-content" className="skip-link">
+        Skip to main content
+      </a>
       <Header />
       <RevealOnScroll>
         <Outlet />

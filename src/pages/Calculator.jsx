@@ -4,6 +4,7 @@ import PageHero from '../components/PageHero';
 import SquareFootageCalculator from '../components/SquareFootageCalculator';
 import CtaBanner from '../components/CtaBanner';
 import { SITE } from '../data/site';
+import { combineJsonLd, localBusinessSchema } from '../utils/jsonLd';
 
 export default function Calculator() {
   return (
@@ -12,17 +13,19 @@ export default function Calculator() {
         title="Solar Screen Price Calculator | Ball Bros Screens"
         description="Estimate your solar screen square footage and project price. Add multiple window sizes at $8/sq ft. Free quotes for East Valley Arizona homeowners."
         path="/calculator"
-        jsonLd={{
-          '@context': 'https://schema.org',
-          '@type': 'BreadcrumbList',
-          itemListElement: [
-            { '@type': 'ListItem', position: 1, name: 'Home', item: `${SITE.domain}/` },
-            { '@type': 'ListItem', position: 2, name: 'Price Calculator', item: `${SITE.domain}/calculator` },
-          ],
-        }}
+        jsonLd={combineJsonLd(
+          localBusinessSchema(),
+          {
+            '@type': 'BreadcrumbList',
+            itemListElement: [
+              { '@type': 'ListItem', position: 1, name: 'Home', item: `${SITE.domain}/` },
+              { '@type': 'ListItem', position: 2, name: 'Price Calculator', item: `${SITE.domain}/calculator` },
+            ],
+          }
+        )}
       />
 
-      <main>
+      <main id="main-content">
         <PageHero
           title="Solar Screen Price Calculator"
           subtitle="Add each window size in your home to estimate total square footage and a rough project price before you request your free quote."
