@@ -6,6 +6,7 @@ import FaqList from '../components/FaqList';
 import CtaBanner from '../components/CtaBanner';
 import BenefitIcon from '../components/BenefitIcon';
 import NotFound from './NotFound';
+import RebateNotice from '../components/RebateNotice';
 import { SITE } from '../data/site';
 import {
   CITY_CONTENT,
@@ -73,10 +74,20 @@ export default function CityPage({ slug }) {
               <div className="city-quick-cta">
                 <h3>{city.ctaSidebarTitle}</h3>
                 <p>{city.ctaSidebarText}</p>
+                <p>
+                  ROC {SITE.roc}. Qualifying SRP customers may be eligible for a $1 per square
+                  foot solar screen rebate.
+                </p>
                 <Link to="/contact" className="btn btn-primary">Get My Free Quote</Link>
                 <a href={`tel:${SITE.phone}`} className="btn btn-outline-copper">Call Now</a>
               </div>
             </div>
+          </div>
+        </section>
+
+        <section className="section bg-offwhite" aria-label="SRP rebate and contractor license">
+          <div className="container">
+            <RebateNotice />
           </div>
         </section>
 

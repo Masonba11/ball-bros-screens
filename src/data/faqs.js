@@ -35,6 +35,11 @@ export const HOME_FAQS = [
       'Solar screens can help reduce heat entering your home through windows, which may help your air conditioning system work less hard. Results will vary depending on your home, the number of windows screened, your existing insulation, and your usage habits.',
   },
   {
+    question: 'Can Ball Bros Screens help with the SRP solar screen rebate?',
+    answer:
+      'Yes. Ball Bros Screens is a registered Arizona contractor, ROC 366324, so we can help qualifying SRP customers understand and pursue the SRP solar screen rebate when it is available. The rebate is typically $1 per square foot, so 200 square feet of installed solar screens could mean about $200 in savings. SRP determines eligibility and final approval.',
+  },
+  {
     question: 'What areas does Ball Bros Screens serve?',
     answer:
       'Ball Bros Screens serves the East Valley, Arizona, including Queen Creek, San Tan Valley, Gilbert, Chandler, Mesa, and surrounding communities. Not sure if we serve your area? Give us a call or send us a message.',
@@ -66,6 +71,11 @@ export const INSTALLATION_FAQS = [
     question: 'Can solar screens be removed or cleaned?',
     answer:
       'Yes. Solar screens can be removed for window cleaning. They\'re also easy to clean with a gentle spray from a garden hose when they accumulate dust — which is common in Arizona\'s desert environment.',
+  },
+  {
+    question: 'How does the SRP rebate work?',
+    answer:
+      'For qualifying SRP customers, the solar screen rebate is typically $1 per square foot of installed screens. Because Ball Bros Screens is a registered Arizona contractor, ROC 366324, we can help you with the rebate approval process when the program is available. For example, 200 square feet of installed solar screens could save about $200. SRP determines eligibility, approval, and final rebate amounts.',
   },
   {
     question: 'Do you serve my area?',

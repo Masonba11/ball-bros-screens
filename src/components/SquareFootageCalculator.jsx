@@ -1,5 +1,6 @@
 import { useState, useMemo, useId } from 'react';
 import { Link } from 'react-router-dom';
+import { SITE } from '../data/site';
 
 const PRICE_PER_SQ_FT = 8;
 const PRICE_LABEL = '$8/sq ft — Standard Solar Screen';
@@ -55,7 +56,16 @@ export default function SquareFootageCalculator({ standalone = false }) {
     setWindows((prev) => (prev.length > 1 ? prev.filter((row) => row.id !== id) : prev));
   };
 
-  const { lineItems, totalSqFt, totalWindows, estimatedPrice, avgPerWindow, hasInput } =
+  const {
+    lineItems,
+    totalSqFt,
+    totalWindows,
+    estimatedPrice,
+    potentialRebate,
+    estimatedAfterRebate,
+    avgPerWindow,
+    hasInput,
+  } =
     useMemo(() => {
       const items = windows.map((row) => {
         const sqFt = rowSqFt(row.width, row.height, row.quantity);
@@ -78,6 +88,8 @@ export default function SquareFootageCalculator({ standalone = false }) {
       const sqFtSum = validItems.reduce((sum, item) => sum + item.sqFt, 0);
       const windowCount = validItems.reduce((sum, item) => sum + item.quantity, 0);
       const priceSum = sqFtSum * PRICE_PER_SQ_FT;
+      const rebateEstimate = sqFtSum * SITE.srpRebatePerSqFt;
+      const afterRebate = Math.max(priceSum - rebateEstimate, 0);
       const avg = windowCount > 0 ? priceSum / windowCount : 0;
 
       return {
@@ -85,6 +97,8 @@ export default function SquareFootageCalculator({ standalone = false }) {
         totalSqFt: sqFtSum,
         totalWindows: windowCount,
         estimatedPrice: priceSum,
+        potentialRebate: rebateEstimate,
+        estimatedAfterRebate: afterRebate,
         avgPerWindow: avg,
         hasInput: validItems.length > 0,
       };
@@ -128,6 +142,10 @@ export default function SquareFootageCalculator({ standalone = false }) {
           <div className="calculator-grid">
             <div className="calculator-inputs">
               <p className="calculator-rate">{PRICE_LABEL}</p>
+              <p className="calculator-rate">
+                ROC {SITE.roc} · Potential SRP rebate: ${SITE.srpRebatePerSqFt}/sq ft for
+                qualifying customers
+              </p>
 
               <div className="calculator-windows">
                 {windows.map((row, index) => {
@@ -223,6 +241,14 @@ export default function SquareFootageCalculator({ standalone = false }) {
                   <dt>Estimated project price</dt>
                   <dd>{formatMoney(estimatedPrice)}</dd>
                 </div>
+                <div className="calculator-result-row calculator-result-rebate">
+                  <dt>Potential SRP rebate</dt>
+                  <dd>{formatMoney(potentialRebate)}</dd>
+                </div>
+                <div className="calculator-result-row calculator-after-rebate">
+                  <dt>Estimated after rebate</dt>
+                  <dd>{formatMoney(estimatedAfterRebate)}</dd>
+                </div>
                 <div className="calculator-result-row">
                   <dt>Average price per window</dt>
                   <dd>{formatMoney(avgPerWindow)}</dd>
@@ -250,7 +276,8 @@ export default function SquareFootageCalculator({ standalone = false }) {
 
           <p className="calculator-disclaimer">
             Final pricing may vary based on mesh percentage, frame color, second-story access,
-            oversized windows, and exact measurements.
+            oversized windows, and exact measurements. SRP rebate eligibility, approval, and
+            amounts are determined by SRP.
           </p>
         </div>
       </div>

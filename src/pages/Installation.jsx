@@ -5,6 +5,7 @@ import PageHero from '../components/PageHero';
 import FaqList from '../components/FaqList';
 import CtaBanner from '../components/CtaBanner';
 import BenefitIcon from '../components/BenefitIcon';
+import RebateNotice from '../components/RebateNotice';
 import { SITE, CITIES } from '../data/site';
 import { INSTALLATION_FAQS } from '../data/faqs';
 import { INSTALLATION_PROCESS_STEPS } from '../data/process';
@@ -83,12 +84,20 @@ export default function Installation() {
                   <li>Multiple frame color choices</li>
                   <li>Clean installation with no mess left behind</li>
                   <li>Screens built for Arizona&apos;s climate</li>
+                  <li>Registered contractor: ROC {SITE.roc}</li>
+                  <li>SRP rebate guidance for qualifying customers</li>
                 </ul>
                 <div style={{ marginTop: 24 }}>
                   <Link to="/contact" className="btn btn-primary" style={{ width: '100%', textAlign: 'center' }}>Get a Free Quote</Link>
                 </div>
               </div>
             </div>
+          </div>
+        </section>
+
+        <section className="section bg-offwhite" aria-label="SRP rebate and contractor license">
+          <div className="container">
+            <RebateNotice />
           </div>
         </section>
 

@@ -3,6 +3,7 @@ import SEO from '../components/SEO';
 import Breadcrumb from '../components/Breadcrumb';
 import PageHero from '../components/PageHero';
 import CtaBanner from '../components/CtaBanner';
+import RebateNotice from '../components/RebateNotice';
 import { SITE } from '../data/site';
 import { SERVICE_AREA_CARDS } from '../data/cities';
 import { combineJsonLd, localBusinessSchema } from '../utils/jsonLd';
@@ -52,7 +53,16 @@ export default function ServiceAreas() {
               <p style={{ color: 'var(--gray)', fontSize: '1.05rem' }}>
                 Whether you&apos;re in a newer development in Queen Creek, an established neighborhood in Mesa, or anywhere in between, we provide custom-fit solar screens installed with care and professionalism.
               </p>
+              <p style={{ color: 'var(--gray)', fontSize: '1.05rem' }}>
+                Ball Bros Screens is Arizona ROC {SITE.roc}, and we can help qualifying SRP customers understand and pursue the current $1 per square foot solar screen rebate.
+              </p>
             </div>
+          </div>
+        </section>
+
+        <section className="section bg-offwhite" aria-label="SRP rebate and contractor license">
+          <div className="container">
+            <RebateNotice />
           </div>
         </section>
 

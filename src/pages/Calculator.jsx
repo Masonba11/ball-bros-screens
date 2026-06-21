@@ -3,6 +3,7 @@ import Breadcrumb from '../components/Breadcrumb';
 import PageHero from '../components/PageHero';
 import SquareFootageCalculator from '../components/SquareFootageCalculator';
 import CtaBanner from '../components/CtaBanner';
+import RebateNotice from '../components/RebateNotice';
 import { SITE } from '../data/site';
 import { combineJsonLd, localBusinessSchema } from '../utils/jsonLd';
 
@@ -11,7 +12,7 @@ export default function Calculator() {
     <>
       <SEO
         title="Solar Screen Price Calculator | Ball Bros Screens"
-        description="Estimate your solar screen square footage and project price. Add multiple window sizes at $8/sq ft. Free quotes for East Valley Arizona homeowners."
+        description="Estimate your solar screen square footage, project price, and possible SRP rebate. Ball Bros Screens is Arizona ROC 366324."
         path="/calculator"
         jsonLd={combineJsonLd(
           localBusinessSchema(),
@@ -34,6 +35,12 @@ export default function Calculator() {
         </PageHero>
 
         <SquareFootageCalculator standalone />
+
+        <section className="section bg-white" aria-label="SRP rebate and contractor license">
+          <div className="container">
+            <RebateNotice />
+          </div>
+        </section>
 
         <CtaBanner
           title="Ready for an Exact Quote?"

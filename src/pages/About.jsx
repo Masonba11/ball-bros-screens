@@ -3,6 +3,7 @@ import SEO from '../components/SEO';
 import Breadcrumb from '../components/Breadcrumb';
 import PageHero from '../components/PageHero';
 import CtaBanner from '../components/CtaBanner';
+import RebateNotice from '../components/RebateNotice';
 import { SITE, CITIES } from '../data/site';
 import { combineJsonLd, localBusinessSchema } from '../utils/jsonLd';
 
@@ -57,6 +58,9 @@ export default function About() {
                 <p style={{ color: 'var(--gray)' }}>
                   We live and work in the East Valley. We know these communities, and we understand the challenges that come with Arizona&apos;s intense sun and heat.
                 </p>
+                <p style={{ color: 'var(--gray)' }}>
+                  Ball Bros Screens is a registered Arizona contractor, ROC {SITE.roc}. That registration also allows us to help qualifying SRP customers through the solar screen rebate approval process when the program is available.
+                </p>
                 <div style={{ marginTop: 28 }}>
                   <Link to="/contact" className="btn btn-primary" style={{ marginRight: 14 }}>Get a Free Quote</Link>
                   <Link to="/solar-screen-installation" className="btn btn-outline-copper">Learn About Our Service</Link>
@@ -79,6 +83,12 @@ export default function About() {
                 </div>
               </div>
             </div>
+          </div>
+        </section>
+
+        <section className="section bg-offwhite" aria-label="SRP rebate and contractor license">
+          <div className="container">
+            <RebateNotice />
           </div>
         </section>
 

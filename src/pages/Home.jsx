@@ -3,6 +3,7 @@ import SEO from '../components/SEO';
 import FaqList from '../components/FaqList';
 import CtaBanner from '../components/CtaBanner';
 import BenefitIcon from '../components/BenefitIcon';
+import RebateNotice from '../components/RebateNotice';
 import { SITE, CITIES } from '../data/site';
 import { HOME_FAQS } from '../data/faqs';
 import { INSTALLATION_PROCESS_STEPS } from '../data/process';
@@ -132,6 +133,12 @@ export default function Home() {
                 </div>
               </div>
             </div>
+          </div>
+        </section>
+
+        <section className="section bg-offwhite" aria-label="SRP rebate and contractor license">
+          <div className="container">
+            <RebateNotice />
           </div>
         </section>
 

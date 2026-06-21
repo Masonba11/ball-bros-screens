@@ -4,6 +4,7 @@ import SEO from '../components/SEO';
 import Breadcrumb from '../components/Breadcrumb';
 import PageHero from '../components/PageHero';
 import QuoteForm from '../components/QuoteForm';
+import RebateNotice from '../components/RebateNotice';
 import { SITE, CITIES } from '../data/site';
 import { combineJsonLd, localBusinessSchema } from '../utils/jsonLd';
 
@@ -78,6 +79,14 @@ export default function Contact() {
                   </div>
                 </div>
 
+                <div className="contact-detail">
+                  <div className="icon" aria-hidden="true" />
+                  <div className="text">
+                    <strong>Contractor License</strong>
+                    <p>Arizona ROC {SITE.roc}</p>
+                  </div>
+                </div>
+
                 <div style={{ marginTop: 32, background: 'var(--white)', borderRadius: 10, padding: 24, border: '1px solid var(--border)' }}>
                   <h3 style={{ fontSize: '1rem', marginBottom: 12 }}>What to Expect</h3>
                   <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: 10 }}>
@@ -85,6 +94,7 @@ export default function Contact() {
                       "We'll reach out within 1 business day to confirm your quote request.",
                       "We'll schedule a time to visit your home and measure your windows.",
                       "We'll walk you through your screen options and give you a clear, honest quote.",
+                      "If you're an SRP customer, we'll explain the current solar screen rebate process and potential $1 per square foot savings.",
                       'You decide what works for you — no pressure, ever.',
                     ].map((text, i) => (
                       <li key={text} style={{ display: 'flex', gap: 10, fontSize: '.93rem', color: 'var(--gray)' }}>
@@ -98,6 +108,8 @@ export default function Contact() {
 
               <QuoteForm showWindowsField />
             </div>
+
+            <RebateNotice compact />
           </div>
         </section>
 

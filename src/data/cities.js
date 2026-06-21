@@ -176,6 +176,11 @@ export const CITY_FAQS = (cityName) => [
     answer: 'Fill out our quote form or give us a call. We\'ll schedule a time to visit your home, measure your windows, and provide a clear, no-obligation quote.',
   },
   {
+    question: `Can ${cityName} homeowners get an SRP solar screen rebate?`,
+    answer:
+      'Qualifying SRP customers may be eligible for a solar screen rebate, typically $1 per square foot of installed solar screens. Ball Bros Screens is a registered Arizona contractor, ROC 366324, so we can help with the approval process when the program is available. For example, 200 square feet of installed screens could save about $200. SRP determines eligibility and final approval.',
+  },
+  {
     question: 'Can I get solar screens on just a few windows instead of the whole house?',
     answer: 'Yes, absolutely. Many homeowners start with the windows that get the most sun — often south and west-facing rooms — and add more later.',
   },

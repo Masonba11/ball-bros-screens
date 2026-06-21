@@ -15,6 +15,9 @@ export default function Footer() {
               Custom solar screen installation for homeowners throughout the East Valley, Arizona.
               Locally owned and focused entirely on solar screens.
             </p>
+            <p style={{ fontSize: '.9rem', color: '#c0c8d0', marginBottom: 8 }}>
+              Arizona ROC {SITE.roc}
+            </p>
             <a href={`mailto:${SITE.email}`} className="footer-contact-link" style={{ fontSize: '.95rem', marginTop: 8 }}>
               {SITE.email}
             </a>
@@ -54,7 +57,7 @@ export default function Footer() {
 
         <div className="footer-bottom">
           <span>&copy; {new Date().getFullYear()} {SITE.name}. All rights reserved.</span>
-          <span>{SITE.hostname} · East Valley Solar Screen Installation</span>
+          <span>ROC {SITE.roc} · {SITE.hostname} · East Valley Solar Screen Installation</span>
         </div>
       </div>
     </footer>

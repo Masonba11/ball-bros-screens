@@ -38,6 +38,7 @@ export function localBusinessSchema() {
     url: SITE.domain,
     telephone: SITE.phone,
     email: SITE.email,
+    identifier: `Arizona ROC ${SITE.roc}`,
     image: `${SITE.domain}${SITE.logo}`,
     logo: `${SITE.domain}${SITE.logo}`,
     description: 'Custom solar screen installation for homeowners in the East Valley, Arizona.',

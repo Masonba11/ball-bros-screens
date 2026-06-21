@@ -57,30 +57,45 @@ export default function QuoteForm({ showWindowsField = false, heading = 'Request
         {heading}
       </h3>
       <p style={{ color: 'var(--gray)', fontSize: '.92rem', marginBottom: 28 }}>
-        Fill out the form and we&apos;ll be in touch shortly.
+        Fill out the form and we&apos;ll be in touch shortly. Ball Bros Screens is Arizona ROC{' '}
+        {SITE.roc}, and we can discuss possible SRP solar screen rebate savings for qualifying
+        customers.
       </p>
 
       <form id="quote-form" onSubmit={handleSubmit} aria-labelledby="form-heading">
         <div className="form-grid">
           <div className="form-group">
             <label htmlFor="name">
-              Full Name <span style={{ color: 'var(--copper)' }}>*</span>
+              Full Name <span style={{ color: "var(--copper)" }}>*</span>
             </label>
-            <input type="text" id="name" name="name" placeholder="Your name" required autoComplete="name" />
+            <input
+              type="text"
+              id="name"
+              name="name"
+              placeholder="Your name"
+              required
+              autoComplete="name"
+            />
           </div>
           <div className="form-group">
             <label htmlFor="phone">
-              Phone Number <span style={{ color: 'var(--copper)' }}>*</span>
+              Phone Number <span style={{ color: "var(--copper)" }}>*</span>
             </label>
             <input type="tel" id="phone" name="phone" placeholder="Your phone number" required autoComplete="tel" />
           </div>
           <div className="form-group">
             <label htmlFor="email">Email Address</label>
-            <input type="email" id="email" name="email" placeholder="you@example.com" autoComplete="email" />
+            <input
+              type="email"
+              id="email"
+              name="email"
+              placeholder="you@example.com"
+              autoComplete="email"
+            />
           </div>
           <div className="form-group">
             <label htmlFor="city">
-              Your City <span style={{ color: 'var(--copper)' }}>*</span>
+              Your City <span style={{ color: "var(--copper)" }}>*</span>
             </label>
             <select id="city" name="city" required defaultValue="">
               <option value="" disabled>
@@ -126,7 +141,14 @@ export default function QuoteForm({ showWindowsField = false, heading = 'Request
             {status === 'submitting' ? 'Sending…' : 'Request My Free Solar Screen Quote'}
           </button>
         </div>
-        <p style={{ fontSize: '.8rem', color: 'var(--gray-lt)', marginTop: 12, textAlign: 'center' }}>
+        <p
+          style={{
+            fontSize: ".8rem",
+            color: "var(--gray-lt)",
+            marginTop: 12,
+            textAlign: "center",
+          }}
+        >
           We respect your privacy and will never share your information.
         </p>
       </form>
