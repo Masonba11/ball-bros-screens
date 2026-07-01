@@ -128,9 +128,6 @@ export default function Header() {
         </nav>
 
         <div className="header-actions">
-          <span className="roc-nav-badge" aria-label={`Arizona ROC ${SITE.roc}`}>
-            ROC {SITE.roc}
-          </span>
           <Link
             ref={desktopCtaRef}
             to="/contact"
@@ -140,6 +137,9 @@ export default function Header() {
           >
             Get a Free Quote
           </Link>
+          <span className="roc-nav-badge" aria-label={`Arizona ROC ${SITE.roc}`}>
+            ROC {SITE.roc}
+          </span>
           <button
             ref={toggleRef}
             type="button"
