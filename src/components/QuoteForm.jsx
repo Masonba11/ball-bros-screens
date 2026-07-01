@@ -1,7 +1,10 @@
 import { useState } from 'react';
 import { SITE, CITIES } from '../data/site';
 
-const FORM_ENDPOINT = import.meta.env.VITE_FORM_ENDPOINT?.trim() || '';
+const FORM_ACCESS_KEY = import.meta.env.VITE_FORM_ACCESS_KEY?.trim() || '';
+const FORM_ENDPOINT =
+  import.meta.env.VITE_FORM_ENDPOINT?.trim() ||
+  (FORM_ACCESS_KEY ? 'https://api.web3forms.com/submit' : '');
 
 export default function QuoteForm({ showWindowsField = false, heading = 'Request My Free Solar Screen Quote' }) {
   const [status, setStatus] = useState('idle');
@@ -20,6 +23,11 @@ export default function QuoteForm({ showWindowsField = false, heading = 'Request
 
     setStatus('submitting');
     const formData = new FormData(e.currentTarget);
+    if (FORM_ACCESS_KEY) {
+      formData.append('access_key', FORM_ACCESS_KEY);
+      formData.append('subject', 'New Ball Bros Screens Quote Request');
+      formData.append('from_name', SITE.name);
+    }
 
     try {
       const response = await fetch(FORM_ENDPOINT, {
@@ -27,8 +35,9 @@ export default function QuoteForm({ showWindowsField = false, heading = 'Request
         body: formData,
         headers: { Accept: 'application/json' },
       });
+      const data = await response.json().catch(() => ({}));
 
-      if (!response.ok) throw new Error('Request failed');
+      if (!response.ok || data.success === false) throw new Error('Request failed');
       setStatus('success');
     } catch {
       setStatus('idle');
@@ -63,6 +72,7 @@ export default function QuoteForm({ showWindowsField = false, heading = 'Request
       </p>
 
       <form id="quote-form" onSubmit={handleSubmit} aria-labelledby="form-heading">
+        <input type="hidden" name="roc" value={SITE.roc} />
         <div className="form-grid">
           <div className="form-group">
             <label htmlFor="name">

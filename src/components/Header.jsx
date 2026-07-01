@@ -127,28 +127,32 @@ export default function Header() {
           </ul>
         </nav>
 
-        <Link
-          ref={desktopCtaRef}
-          to="/contact"
-          className="btn btn-primary btn-sm header-cta"
-          aria-hidden={compactNav || undefined}
-          tabIndex={compactNav ? -1 : undefined}
-        >
-          Get a Free Quote
-        </Link>
-
-        <button
-          ref={toggleRef}
-          type="button"
-          className={`nav-toggle${mobileOpen ? ' open' : ''}`}
-          id="nav-toggle"
-          aria-label="Toggle navigation"
-          aria-expanded={mobileOpen}
-          aria-controls="mobile-nav"
-          onClick={toggleMobile}
-        >
-          <span /><span /><span />
-        </button>
+        <div className="header-actions">
+          <span className="roc-nav-badge" aria-label={`Arizona ROC ${SITE.roc}`}>
+            ROC {SITE.roc}
+          </span>
+          <Link
+            ref={desktopCtaRef}
+            to="/contact"
+            className="btn btn-primary btn-sm header-cta"
+            aria-hidden={compactNav || undefined}
+            tabIndex={compactNav ? -1 : undefined}
+          >
+            Get a Free Quote
+          </Link>
+          <button
+            ref={toggleRef}
+            type="button"
+            className={`nav-toggle${mobileOpen ? ' open' : ''}`}
+            id="nav-toggle"
+            aria-label="Toggle navigation"
+            aria-expanded={mobileOpen}
+            aria-controls="mobile-nav"
+            onClick={toggleMobile}
+          >
+            <span /><span /><span />
+          </button>
+        </div>
       </div>
 
       <nav
