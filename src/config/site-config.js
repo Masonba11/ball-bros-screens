@@ -1,8 +1,8 @@
 const DEFAULTS = {
   VITE_SITE_NAME: 'Ball Bros Screens',
   VITE_SITE_DOMAIN: 'https://ballbrosscreens.com',
-  VITE_SITE_PHONE: '+1-480-555-0100',
-  VITE_SITE_PHONE_DISPLAY: '(480) 555-0100',
+  VITE_SITE_PHONE: '+1-480-447-5125',
+  VITE_SITE_PHONE_DISPLAY: '(480) 447-5125',
   VITE_SITE_EMAIL: 'info@ballbrosscreens.com',
   VITE_SITE_ROC: '366324',
   VITE_SITE_SRP_REBATE_PER_SQ_FT: '1',
