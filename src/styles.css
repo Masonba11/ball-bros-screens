@@ -286,6 +286,7 @@ p  { margin-bottom: 1rem; }
   align-items: center;
   gap: 12px;
   flex-shrink: 0;
+  margin-left: 28px;
   transform: translateY(10px);
 }
 .roc-nav-badge {
