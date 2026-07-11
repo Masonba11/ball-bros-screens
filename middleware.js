@@ -1,7 +1,7 @@
 import { rewrite } from '@vercel/functions';
-import { SITEMAP_PATHS } from './src/data/routes.js';
+import { APP_PATHS } from './src/data/routes.js';
 
-const VALID_PATHS = new Set(SITEMAP_PATHS);
+const VALID_PATHS = new Set(APP_PATHS);
 
 function isStaticAsset(pathname) {
   return /\.[a-zA-Z0-9]+$/.test(pathname);

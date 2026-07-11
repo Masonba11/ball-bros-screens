@@ -10,6 +10,7 @@ const ServiceAreas = lazy(() => import('./pages/ServiceAreas'));
 const Installation = lazy(() => import('./pages/Installation'));
 const Calculator = lazy(() => import('./pages/Calculator'));
 const CityPage = lazy(() => import('./pages/CityPage'));
+const ThankYou = lazy(() => import('./pages/ThankYou'));
 const NotFound = lazy(() => import('./pages/NotFound'));
 
 export default function App() {
@@ -20,6 +21,7 @@ export default function App() {
           <Route index element={<Home />} />
           <Route path="about" element={<About />} />
           <Route path="contact" element={<Contact />} />
+          <Route path="thank-you" element={<ThankYou />} />
           <Route path="service-areas" element={<ServiceAreas />} />
           <Route path="solar-screen-installation" element={<Installation />} />
           <Route path="calculator" element={<Calculator />} />

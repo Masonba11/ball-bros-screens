@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { SITE, CITIES } from '../data/site';
 
 const FORM_ACCESS_KEY = import.meta.env.VITE_FORM_ACCESS_KEY?.trim() || '';
@@ -7,6 +8,7 @@ const FORM_ENDPOINT =
   (FORM_ACCESS_KEY ? 'https://api.web3forms.com/submit' : '');
 
 export default function QuoteForm({ showWindowsField = false, heading = 'Request My Free Solar Screen Quote' }) {
+  const navigate = useNavigate();
   const [status, setStatus] = useState('idle');
   const [errorMessage, setErrorMessage] = useState('');
 
@@ -38,7 +40,7 @@ export default function QuoteForm({ showWindowsField = false, heading = 'Request
       const data = await response.json().catch(() => ({}));
 
       if (!response.ok || data.success === false) throw new Error('Request failed');
-      setStatus('success');
+      navigate('/thank-you');
     } catch {
       setStatus('idle');
       setErrorMessage(
@@ -46,19 +48,6 @@ export default function QuoteForm({ showWindowsField = false, heading = 'Request
       );
     }
   };
-
-  if (status === 'success') {
-    return (
-      <div className="quote-form" role="status" aria-live="polite" aria-atomic="true">
-        <h3 style={{ fontSize: '1.4rem', marginBottom: 8 }}>Thank you!</h3>
-        <p style={{ color: 'var(--gray)' }}>
-          We received your request and will respond within one business day.
-          For immediate help, call{' '}
-          <a href={`tel:${SITE.phone}`}>{SITE.phoneDisplay}</a>.
-        </p>
-      </div>
-    );
-  }
 
   return (
     <div className="quote-form">
