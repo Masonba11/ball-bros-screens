@@ -1,6 +1,7 @@
 import { lazy, Suspense } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import Layout from './components/Layout';
+import LpLayout from './components/LpLayout';
 import { CITIES } from './data/site';
 
 const Home = lazy(() => import('./pages/Home'));
@@ -11,12 +12,16 @@ const Installation = lazy(() => import('./pages/Installation'));
 const Calculator = lazy(() => import('./pages/Calculator'));
 const CityPage = lazy(() => import('./pages/CityPage'));
 const ThankYou = lazy(() => import('./pages/ThankYou'));
+const QueenCreekLp = lazy(() => import('./pages/QueenCreekLp'));
 const NotFound = lazy(() => import('./pages/NotFound'));
 
 export default function App() {
   return (
     <Suspense fallback={<div className="route-loading" aria-live="polite">Loading page…</div>}>
       <Routes>
+        <Route element={<LpLayout />}>
+          <Route path="lp/queen-creek-solar-screens" element={<QueenCreekLp />} />
+        </Route>
         <Route element={<Layout />}>
           <Route index element={<Home />} />
           <Route path="about" element={<About />} />

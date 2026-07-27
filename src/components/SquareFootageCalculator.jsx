@@ -1,15 +1,14 @@
 import { useState, useMemo, useId } from 'react';
 import { Link } from 'react-router-dom';
 import { SITE } from '../data/site';
+import {
+  PRICE_PER_SQ_FT,
+  SALES_TAX_RATE,
+  currency,
+  downloadEstimatePdf,
+} from '../utils/estimatePdf';
 
-const PRICE_PER_SQ_FT = 8;
 const PRICE_LABEL = '$8/sq ft — Standard Solar Screen';
-
-const currency = new Intl.NumberFormat('en-US', {
-  style: 'currency',
-  currency: 'USD',
-  maximumFractionDigits: 2,
-});
 
 function parsePositive(value) {
   const n = parseFloat(value);
@@ -60,52 +59,73 @@ export default function SquareFootageCalculator({ standalone = false }) {
     lineItems,
     totalSqFt,
     totalWindows,
+    subtotal,
+    taxAmount,
     estimatedPrice,
     potentialRebate,
     estimatedAfterRebate,
     avgPerWindow,
     hasInput,
-  } =
-    useMemo(() => {
-      const items = windows.map((row) => {
-        const sqFt = rowSqFt(row.width, row.height, row.quantity);
-        const q = parseQuantity(row.quantity);
-        const price = sqFt * PRICE_PER_SQ_FT;
-        const valid = sqFt > 0;
-
-        return {
-          id: row.id,
-          width: row.width,
-          height: row.height,
-          quantity: q,
-          sqFt,
-          price,
-          valid,
-        };
-      });
-
-      const validItems = items.filter((item) => item.valid);
-      const sqFtSum = validItems.reduce((sum, item) => sum + item.sqFt, 0);
-      const windowCount = validItems.reduce((sum, item) => sum + item.quantity, 0);
-      const priceSum = sqFtSum * PRICE_PER_SQ_FT;
-      const rebateEstimate = sqFtSum * SITE.srpRebatePerSqFt;
-      const afterRebate = Math.max(priceSum - rebateEstimate, 0);
-      const avg = windowCount > 0 ? priceSum / windowCount : 0;
+  } = useMemo(() => {
+    const items = windows.map((row) => {
+      const sqFt = rowSqFt(row.width, row.height, row.quantity);
+      const q = parseQuantity(row.quantity);
+      const pretax = sqFt * PRICE_PER_SQ_FT;
+      const price = pretax * (1 + SALES_TAX_RATE);
+      const valid = sqFt > 0;
 
       return {
-        lineItems: items,
-        totalSqFt: sqFtSum,
-        totalWindows: windowCount,
-        estimatedPrice: priceSum,
-        potentialRebate: rebateEstimate,
-        estimatedAfterRebate: afterRebate,
-        avgPerWindow: avg,
-        hasInput: validItems.length > 0,
+        id: row.id,
+        width: row.width,
+        height: row.height,
+        quantity: q,
+        sqFt,
+        pretax,
+        price,
+        valid,
       };
-    }, [windows]);
+    });
+
+    const validItems = items.filter((item) => item.valid);
+    const sqFtSum = validItems.reduce((sum, item) => sum + item.sqFt, 0);
+    const windowCount = validItems.reduce((sum, item) => sum + item.quantity, 0);
+    const pretaxSum = sqFtSum * PRICE_PER_SQ_FT;
+    const tax = pretaxSum * SALES_TAX_RATE;
+    const priceSum = pretaxSum + tax;
+    const rebateEstimate = sqFtSum * SITE.srpRebatePerSqFt;
+    const afterRebate = Math.max(priceSum - rebateEstimate, 0);
+    const avg = windowCount > 0 ? priceSum / windowCount : 0;
+
+    return {
+      lineItems: items,
+      totalSqFt: sqFtSum,
+      totalWindows: windowCount,
+      subtotal: pretaxSum,
+      taxAmount: tax,
+      estimatedPrice: priceSum,
+      potentialRebate: rebateEstimate,
+      estimatedAfterRebate: afterRebate,
+      avgPerWindow: avg,
+      hasInput: validItems.length > 0,
+    };
+  }, [windows]);
 
   const formatSqFt = (n) => (hasInput ? n.toFixed(2) : '—');
   const formatMoney = (n) => (hasInput ? currency.format(n) : '—');
+
+  const handleDownloadPdf = () => {
+    if (!hasInput) return;
+    downloadEstimatePdf({
+      site: SITE,
+      lineItems: lineItems.filter((item) => item.valid),
+      totalSqFt,
+      totalWindows,
+      subtotal,
+      taxAmount,
+      total: estimatedPrice,
+      potentialRebate,
+    });
+  };
 
   return (
     <section
@@ -266,6 +286,16 @@ export default function SquareFootageCalculator({ standalone = false }) {
                       </li>
                     ))}
                 </ul>
+              )}
+
+              {hasInput && (
+                <button
+                  type="button"
+                  className="btn btn-outline-copper calculator-pdf-btn"
+                  onClick={handleDownloadPdf}
+                >
+                  Download estimate PDF
+                </button>
               )}
 
               <Link to="/contact#quote-form" className="btn btn-primary btn-lg calculator-quote-btn">

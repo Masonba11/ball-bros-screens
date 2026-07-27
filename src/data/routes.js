@@ -37,5 +37,9 @@ export const SITEMAP_ROUTES = [
 
 export const SITEMAP_PATHS = SITEMAP_ROUTES.map((route) => route.path);
 
-/** App routes that should return 200 but are not indexed (e.g. thank-you). */
-export const APP_PATHS = [...SITEMAP_PATHS, '/thank-you'];
+/** App routes that should return 200 but are not indexed (e.g. thank-you, ads LPs). */
+export const APP_PATHS = [
+  ...SITEMAP_PATHS,
+  '/thank-you',
+  '/lp/queen-creek-solar-screens',
+];
