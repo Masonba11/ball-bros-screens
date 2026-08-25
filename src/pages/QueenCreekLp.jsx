@@ -1,6 +1,8 @@
 import SEO from '../components/SEO';
 import QuoteForm from '../components/QuoteForm';
 import RebateNotice from '../components/RebateNotice';
+import HeroPhoto from '../components/HeroPhoto';
+import TruckFeature from '../components/TruckFeature';
 import { SITE } from '../data/site';
 
 const BENEFITS = [
@@ -71,6 +73,7 @@ export default function QueenCreekLp() {
 
       <main id="main-content" className="lp-page">
         <section className="lp-hero" aria-labelledby="lp-hero-heading">
+          <HeroPhoto priority />
           <div className="container lp-hero-grid">
             <div className="lp-hero-copy">
               <p className="lp-eyebrow">Queen Creek, Arizona · Solar &amp; Sun Screens</p>
@@ -124,6 +127,13 @@ export default function QueenCreekLp() {
             </div>
           </div>
         </section>
+
+        <TruckFeature
+          heading="Ball Bros Screens — local Queen Creek & East Valley crew"
+          text="Our branded work truck shows up ready to measure and install. Licensed Arizona contractor, focused only on solar screens."
+          ctaHref="#quote"
+          ctaLabel="Request My Free Quote"
+        />
 
         <section className="section bg-white" aria-labelledby="benefits-heading">
           <div className="container">

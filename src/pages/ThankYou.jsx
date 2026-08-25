@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import SEO from '../components/SEO';
+import HeroPhoto from '../components/HeroPhoto';
 import { SITE } from '../data/site';
 
 export default function ThankYou() {
@@ -21,6 +22,7 @@ export default function ThankYou() {
 
       <main id="main-content">
         <section className="page-hero">
+          <HeroPhoto />
           <div className="container" style={{ textAlign: 'center', maxWidth: 640 }}>
             <p className="eyebrow">Quote Request Received</p>
             <h1>Thank You!</h1>
@@ -28,9 +30,9 @@ export default function ThankYou() {
               We received your request and will respond within one business day to schedule your
               free in-home measurement and quote.
             </p>
-            <p style={{ color: 'var(--gray)', marginTop: 16 }}>
+            <p style={{ color: '#c8d0d8', marginTop: 16 }}>
               For immediate help, call{' '}
-              <a href={`tel:${SITE.phone}`} style={{ fontWeight: 600 }}>
+              <a href={`tel:${SITE.phone}`} style={{ fontWeight: 600, color: '#f0a068' }}>
                 {SITE.phoneDisplay}
               </a>
               .
@@ -39,7 +41,7 @@ export default function ThankYou() {
               <Link to="/" className="btn btn-primary">
                 Back to Home
               </Link>
-              <Link to="/calculator" className="btn btn-outline-copper">
+              <Link to="/calculator" className="btn btn-outline">
                 Price Calculator
               </Link>
             </div>

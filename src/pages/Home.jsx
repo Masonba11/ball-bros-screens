@@ -4,6 +4,8 @@ import FaqList from '../components/FaqList';
 import CtaBanner from '../components/CtaBanner';
 import BenefitIcon from '../components/BenefitIcon';
 import RebateNotice from '../components/RebateNotice';
+import HeroPhoto from '../components/HeroPhoto';
+import TruckFeature from '../components/TruckFeature';
 import { SITE, CITIES } from '../data/site';
 import { HOME_FAQS } from '../data/faqs';
 import { INSTALLATION_PROCESS_STEPS } from '../data/process';
@@ -52,6 +54,7 @@ export default function Home() {
 
       <main id="main-content">
         <section className="hero" aria-labelledby="hero-heading">
+          <HeroPhoto priority />
           <div className="container">
             <div className="hero-inner">
               <div className="hero-tag">East Valley, Arizona</div>
@@ -100,6 +103,8 @@ export default function Home() {
             </div>
           </div>
         </section>
+
+        <TruckFeature />
 
         <section className="section bg-white" aria-labelledby="problem-heading">
           <div className="container">

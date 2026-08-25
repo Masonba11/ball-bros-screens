@@ -1,6 +1,9 @@
+import HeroPhoto from './HeroPhoto';
+
 export default function PageHero({ eyebrow, title, subtitle, children }) {
   return (
     <section className="page-hero">
+      <HeroPhoto />
       <div className="container">
         {children}
         {eyebrow && <p className="eyebrow">{eyebrow}</p>}
